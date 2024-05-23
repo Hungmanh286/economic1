@@ -1,30 +1,30 @@
 import React from "react";
+import Slider from "react-slick";
+import {Image} from "antd";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
-const Home = () => {
+const Main = ({ arrImages }) => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay : true,
+    autoplaySpeed : 3000
+  };
+
   return (
-    <>
-      <div className="hero border-1 pb-3">
-        <div className="card bg-dark text-white border-0 mx-3">
-          <img
-            className="card-img img-fluid"
-            src="./assets/main.png.jpg"
-            alt="Card"
-            height={500}
-          />
-          <div className="card-img-overlay d-flex align-items-center">
-            <div className="container">
-              <h5 className="card-title fs-1 text fw-lighter">New Season Arrivals</h5>
-              <p className="card-text fs-5 d-none d-sm-block ">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
+    <Slider {...settings}>
+      {arrImages.map((image, index) => (
+        <div key={index}>
+          <Image src={image} alt={`slider ${index}`} />
         </div>
-      </div>
-    </>
+      ))}
+    </Slider>
   );
 };
 
-export default Home;
+export default Main;
+ 
